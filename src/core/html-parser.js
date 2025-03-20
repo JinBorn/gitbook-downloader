@@ -35,17 +35,22 @@ function configureTurndownRules(turndownService) {
 			let title = '';
 			const headingElement = node.querySelector('h3');
 			if (headingElement) {
-				title = ' ' + headingElement.textContent.trim();
+				title = headingElement.textContent.trim();
 			}
 
-			// 提取实际内容，排除标题
-			const contentElements = node.querySelectorAll('p:not(h3 + p)');
-			const textContent = Array.from(contentElements)
-				.map(p => p.textContent.trim())
-				.join('\n> ');
+			let textContent = content.replace(/\n+/g, '\n').trim();
 
-			// 返回对应的Markdown格式
-			return `>[!${type}]${title}\n> ${textContent}\n\n`;
+			// 移除重复标题
+			if (title) {
+				const delTitle = `### ${title}`;
+				if (textContent.startsWith(delTitle))
+					textContent = textContent.substring(delTitle.length + 1);
+			}
+
+			// 每行前面添加 >
+			textContent = textContent.split('\n').join('\n> ');
+
+			return `>[!${type}] ${title}\n> ${textContent}\n\n`;
 		}
 	});
 
