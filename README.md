@@ -6,6 +6,11 @@ GitBook Downloader 是一款基于 Node.js 的自动化文档抓取工具，专�
 
 ---
 
+## 改动
+
+- 新增了http站点不信任报错处理
+- 支持设置命令参数`-c`设置并行下载任务数，默认4
+
 ## 方法指南
 
 ### 环境准备
@@ -36,6 +41,9 @@ node src/index https://docs.gitbook.com -o ./my_docs
 node src/index https://internal.company.com/docs \
   -a -u user@company.com -p $SECRET_PASSWORD \
   -i false  # 禁用图片下载
+
+# 私有http文档(需认证)带图片并行8个下载
+node src/index https://internal.company.com/docs -a -A -u 用户名 -p $SECRET_PASSWORD -o ./my_docs -c 8
 ```
 
 ### 参数说明
@@ -48,3 +56,4 @@ node src/index https://internal.company.com/docs \
 | -a     | --auth     | boolean  | false    | 启用 HTTP Basic 认证           |
 | -u     | --username | string   | -        | 需与`-a`联用                   |
 | -p     | --password | string   | -        | 建议通过环境变量传递           |
+| -c     | --concurrency | string   | 4        | 并行下载任务数           |
