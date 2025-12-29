@@ -10,6 +10,7 @@ GitBook Downloader 是一款基于 Node.js 的自动化文档抓取工具，专�
 
 - 新增了http站点不信任报错处理
 - 支持设置命令参数`-c`设置并行下载任务数，默认4
+- puppeteer设置chrome浏览器地址
 
 ## 方法指南
 

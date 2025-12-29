@@ -39,7 +39,7 @@ async function downloadGitbook(url, options) {
   const browser = await puppeteer.launch({
     headless: "new",
     executablePath:
-      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", //chrome浏览器地址
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
